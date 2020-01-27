@@ -1,0 +1,198 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ExtractProfileData" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:c="clr-namespace:CustomScreenshot;assembly=CustomScreenshot" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="out_follower" Type="OutArgument(x:String)" />
+    <x:Property Name="out_following" Type="OutArgument(x:String)" />
+    <x:Property Name="out_Tweets" Type="OutArgument(x:String)" />
+    <x:Property Name="in_Username" Type="InArgument(x:String)" />
+    <x:Property Name="in_ScreenshotPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_CurrentURL" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>496,1249</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ExtractProfileData_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="23">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Vision.OCR</x:String>
+      <x:String>UiPath.CV</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="21">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="User extract the profile information i.e., tweet count, follower count and following count" DisplayName="ExtractProfileData" sap:VirtualizedContainerService.HintSize="476,1149" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Edge" DisplayName="Attach Browser 'Chrome_RenderWidgetHost...'" sap:VirtualizedContainerService.HintSize="434,1015" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="f172e0f01edf64ad0bb03f161d5b9d3e" Selector="&lt;html app='ApplicationFrameHost.exe' /&gt;">
+      <ui:BrowserScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,869" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="ui:GenericValue" Name="FollowerAndFollowing" />
+              <Variable x:TypeArguments="ui:GenericValue" Name="NumberOfTweets" />
+              <Variable x:TypeArguments="ui:GenericValue" Name="ProfileName" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Profile Name To split" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_6">
+              <ui:GetValue.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="ab988ffb14fad8e54cb5f23648776f14" Selector="&lt;webctrl aaname='* Tweets' parentid='react-root' tag='DIV' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:GetValue.Target>
+              <ui:GetValue.Value>
+                <OutArgument x:TypeArguments="ui:GenericValue">[NumberOfTweets]</OutArgument>
+              </ui:GetValue.Value>
+            </ui:GetValue>
+            <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[out_Tweets]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[NumberOfTweets.Split({"Tweets"},StringSplitOptions.None)(0)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:GetFullText IgnoreHidden="{x:Null}" DisplayName="Get Follower and Following" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetFullText_1">
+              <ui:GetFullText.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="a44139bdccf1b03876c1fc3a0cc9c0a3" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;main&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='7' parentid='react-root' tag='DIV' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:GetFullText.Target>
+              <ui:GetFullText.Text>
+                <OutArgument x:TypeArguments="ui:GenericValue">[FollowerAndFollowing]</OutArgument>
+              </ui:GetFullText.Text>
+            </ui:GetFullText>
+            <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[out_following]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[FollowerAndFollowing.Split("Following")(0)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[out_follower]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[FollowerAndFollowing.Split({"Following","Follower"},StringSplitOptions.None)(1).Trim]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <c:TakeCustomScreenshot DisplayName="Take Screenshot" FileName="[in_Username]" Height="1080" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="TakeCustomScreenshot_1" Path="[in_ScreenshotPath]" Width="1920" />
+            <Delay mva:VisualBasic.Settings="{x:Null}" DisplayName="Delay 5 seconds" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_1">
+              <TextExpression.Namespaces>
+                <sco:Collection x:TypeArguments="x:String">
+                  <x:String>System.Activities</x:String>
+                  <x:String>System.Activities.Statements</x:String>
+                  <x:String>System.Activities.Expressions</x:String>
+                  <x:String>System.Activities.Validation</x:String>
+                  <x:String>System.Activities.XamlIntegration</x:String>
+                  <x:String>Microsoft.VisualBasic.Activities</x:String>
+                  <x:String>System</x:String>
+                  <x:String>System.Collections.Generic</x:String>
+                  <x:String>System.Data</x:String>
+                  <x:String>System.Diagnostics</x:String>
+                  <x:String>System.IO</x:String>
+                  <x:String>System.Linq</x:String>
+                  <x:String>System.Management.Automation</x:String>
+                  <x:String>System.Net.Mail</x:String>
+                  <x:String>System.Xml</x:String>
+                  <x:String>System.Xml.Linq</x:String>
+                  <x:String>UiPath.Library</x:String>
+                  <x:String>System.Windows.Markup</x:String>
+                </sco:Collection>
+              </TextExpression.Namespaces>
+              <TextExpression.References>
+                <sco:Collection x:TypeArguments="AssemblyReference">
+                  <AssemblyReference>System.Activities</AssemblyReference>
+                  <AssemblyReference>mscorlib</AssemblyReference>
+                  <AssemblyReference>System.Data</AssemblyReference>
+                  <AssemblyReference>System</AssemblyReference>
+                  <AssemblyReference>System.Core</AssemblyReference>
+                  <AssemblyReference>System.Management.Automation</AssemblyReference>
+                  <AssemblyReference>System.Xml</AssemblyReference>
+                  <AssemblyReference>System.Xml.Linq</AssemblyReference>
+                  <AssemblyReference>UiPath.Library</AssemblyReference>
+                  <AssemblyReference>PresentationFramework</AssemblyReference>
+                  <AssemblyReference>WindowsBase</AssemblyReference>
+                  <AssemblyReference>PresentationCore</AssemblyReference>
+                  <AssemblyReference>System.Xaml</AssemblyReference>
+                </sco:Collection>
+              </TextExpression.References>
+              <sap2010:WorkflowViewState.ViewStateManager>
+                <sap2010:ViewStateManager>
+                  <sap2010:ViewStateData sap:VirtualizedContainerService.HintSize="200,22" Id="Delay_1" />
+                </sap2010:ViewStateManager>
+              </sap2010:WorkflowViewState.ViewStateManager>
+            </Delay>
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[in_Username + &quot; has &quot;+ out_follower +&quot; Followers &quot; + out_following+&quot; following and &quot;+out_Tweets + &quot; Tweets &quot;]" />
+          </Sequence>
+        </ActivityAction>
+      </ui:BrowserScope.Body>
+    </ui:BrowserScope>
+  </Sequence>
+</Activity>
